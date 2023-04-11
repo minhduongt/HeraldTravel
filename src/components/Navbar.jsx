@@ -1,0 +1,169 @@
+import {
+  Box,
+  Flex,
+  Avatar,
+  HStack,
+  Link,
+  IconButton,
+  Button,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  useDisclosure,
+  useColorModeValue,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { useEffect, useState } from "react";
+
+const Links = [
+  { title: "Trang chủ", url: "/" },
+  { title: "Liên hệ", url: "/contact" },
+  { title: "Giới thiệu", url: "/about" },
+];
+
+const NavLink = ({ children, url }) => (
+  <Link
+    px={2}
+    py={1}
+    rounded={"md"}
+    _hover={{
+      textDecoration: "none",
+      color: "#ffd000",
+    }}
+    href={url}
+    color="#ffffffc7"
+    fontSize={"1.5rem"}
+    textShadow={"1px 2px 2px #000000"}
+    transition="all 0.5s"
+  >
+    {children}
+  </Link>
+);
+
+function useScrollDirection() {
+  const [scrollDirection, setScrollDirection] = useState(null);
+
+  useEffect(() => {
+    let lastScrollY = window.pageYOffset;
+
+    const updateScrollDirection = () => {
+      const scrollY = window.pageYOffset;
+      const direction = scrollY > lastScrollY ? "down" : "up";
+      if (
+        direction !== scrollDirection &&
+        (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)
+      ) {
+        setScrollDirection(direction);
+      }
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+    };
+    window.addEventListener("scroll", updateScrollDirection); // add event listener
+    return () => {
+      window.removeEventListener("scroll", updateScrollDirection); // clean up
+    };
+  }, [scrollDirection]);
+
+  return scrollDirection;
+}
+export default function Navbar() {
+  const [isTop, setTop] = useState(true);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const scrollDirection = useScrollDirection();
+  const onScroll = () => {
+    setTop(document.documentElement.scrollTop < 30);
+  };
+  useEffect(() => {
+    document.addEventListener("scroll", onScroll);
+    // Remove listener on unmount
+    return () => document.removeEventListener("scroll", onScroll);
+  }, []);
+  // var body = document.body; //IE 'quirks'
+  // var document = document.documentElement; //IE with doctype
+  // document = document.clientHeight ? document : body;
+  // useEffect(() => {
+  //   console.log("document.scrollTop", document.scrollTop);
+  // }, [document.scrollTop]);
+  return (
+    <>
+      <Flex backgroundColor={"#000000"} justifyContent="center">
+        <Text color="#FFFFFF">Herald Travel - FPT University HCM</Text>
+      </Flex>
+      <Flex
+        borderY={isTop ? "solid 2px #ffbb00" : ""}
+        px={4}
+        h={"5rem"}
+        w="100%"
+        alignItems={"center"}
+        justifyContent={"space-between"}
+        position={"sticky"}
+        top={scrollDirection === "down" ? "0" : "-5rem"}
+        backgroundColor={isTop ? "transparent" : "#000000"}
+        transition="all 0.5s"
+        zIndex={"99"}
+      >
+        <IconButton
+          size={"md"}
+          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+          aria-label={"Open Menu"}
+          display={{ md: "none" }}
+          onClick={isOpen ? onClose : onOpen}
+        />
+
+        <HStack
+          as={"nav"}
+          spacing={4}
+          display={{ base: "none", md: "flex" }}
+          justifyContent="center"
+          w={"100%"}
+        >
+          <Box justifySelf={"left"} color="#FFFFFF" width={"10%"}>
+            Herald Travel
+          </Box>
+          {Links.map((link) => (
+            <Flex width={"30%"} justifyContent="center" key={link}>
+              <NavLink url={link.url}>{link.title}</NavLink>
+            </Flex>
+          ))}
+        </HStack>
+
+        <Flex alignItems={"center"}>
+          {/* <Menu>
+            <MenuButton
+              as={Button}
+              rounded={"full"}
+              variant={"link"}
+              cursor={"pointer"}
+              minW={0}
+            >
+              <Avatar
+                size={"sm"}
+                src={
+                  "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
+                }
+              />
+            </MenuButton>
+            <MenuList>
+              <MenuItem>Link 1</MenuItem>
+              <MenuItem>Link 2</MenuItem>
+              <MenuDivider />
+              <MenuItem>Link 3</MenuItem>
+            </MenuList>
+          </Menu> */}
+        </Flex>
+      </Flex>
+      {isOpen ? (
+        <Box pb={4} display={{ md: "none" }}>
+          <Stack as={"nav"} spacing={4}>
+            {Links.map((link) => (
+              <NavLink key={link}>{link}</NavLink>
+            ))}
+          </Stack>
+        </Box>
+      ) : null}
+    </>
+  );
+}
