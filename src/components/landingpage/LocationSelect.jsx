@@ -28,7 +28,7 @@ export default function LocationSelect() {
   const settings = {
     dots: false,
     infinite: true,
-    autoplay: false,
+    autoplay: true,
     centerMode: true,
 
     autoplaySpeed: 2000,
