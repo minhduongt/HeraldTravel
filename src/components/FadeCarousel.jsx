@@ -57,6 +57,14 @@ const FadeCarousel = ({ children }, props) => {
       title: "Bưu điện Thành phố",
       url: "/images/buudienthanhpho.jpg",
     },
+    {
+      title: "Trường THPT chuyên Lê Hồng Phong",
+      url: "/images/lehongphong.jpg",
+    },
+    {
+      title: "Bảo tàng áo dài",
+      url: "/images/baotangaodai.jpg",
+    },
   ];
 
   return (
@@ -74,7 +82,7 @@ const FadeCarousel = ({ children }, props) => {
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
       />
 
-      <Box width="100%" height={"100%"}>
+      <Box width="100%" height={"100%"} overflow="hidden">
         <Flex justifyContent={"center"}>
           <motion.div
             variants={animateVar}
@@ -87,12 +95,12 @@ const FadeCarousel = ({ children }, props) => {
               position="relative"
               justifyContent={"center"}
               backgroundColor="transparent"
-              top="10rem"
+              top={{ xs: "5rem", md: "10rem" }}
               zIndex={98}
             >
               <Text
                 width={"70%"}
-                fontSize={"5rem"}
+                fontSize={{ xs: "2rem", md: "4rem" }}
                 textTransform="uppercase"
                 textAlign={"center"}
                 color="#FFFFFF"
@@ -109,15 +117,15 @@ const FadeCarousel = ({ children }, props) => {
               <Box key={image.title}>
                 <Image
                   width={"100%"}
-                  height="1080px"
+                  height={{ xs: "50vh", md: "100vh" }}
                   alt={image.title}
                   src={image.url}
                 />
                 <Flex
                   direction={"column"}
                   position="absolute"
-                  bottom="10rem"
-                  left="5rem"
+                  bottom={{ xs: "6rem", md: "10rem" }}
+                  left={{ xs: "1rem", md: "5rem" }}
                   border="solid 1px #c9a30d"
                 >
                   <motion.div
@@ -129,8 +137,8 @@ const FadeCarousel = ({ children }, props) => {
                   >
                     <Text
                       textAlign={"center"}
-                      fontSize={"2.5rem"}
-                      width={"7rem"}
+                      fontSize={{ xs: "1.5rem", md: "2.5rem" }}
+                      width={"8rem"}
                       color="#FFFFFF"
                       textShadow={"2px 2px 2px #c9a30d"}
                       overflowWrap={"anywhere"}

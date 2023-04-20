@@ -41,7 +41,7 @@ export default function AboutSection() {
     },
   };
   return (
-    <Flex minH={"50rem"} justifyContent="center">
+    <Flex minH={{ xs: "20rem", md: "50rem" }} justifyContent="center">
       <Flex
         justifyContent="center"
         alignItems={"center"}
@@ -54,13 +54,20 @@ export default function AboutSection() {
           whileInView="appear"
           viewport={{ once: true }}
         >
-          <Flex justifyContent="center" alignItems={"center"} gap={10}>
-            <Text fontSize={"4rem"}>Giới thiệu</Text>
-            <ArrowRightIcon w="4rem" h="4rem" />
+          <Flex
+            justifyContent="center"
+            alignItems={"center"}
+            gap={{ xs: 1, md: 10 }}
+          >
+            <Text fontSize={{ xs: "1.5rem", md: "4rem" }}>Giới thiệu</Text>
+            <ArrowRightIcon
+              w={{ xs: "2rem", md: "4rem" }}
+              h={{ xs: "2rem", md: "4rem" }}
+            />
           </Flex>
           <Image
-            width={"40rem"}
-            height="50rem"
+            width={{ xs: "10rem", md: "40rem" }}
+            height={{ xs: "15rem", md: "40rem", lg: "50rem" }}
             alt="walkingperson"
             src="/images/walkingperson.gif"
           />
@@ -70,8 +77,10 @@ export default function AboutSection() {
         justifyContent="center"
         alignItems={"center"}
         direction={"column"}
-        width="50%"
-        mx={"10rem"}
+        width={{ xs: "50%", lg: "50%" }}
+        mx={{ xs: "0.5rem", md: "1rem", lg: "5rem" }}
+        backgroundImage="/images/saigon-vector.png"
+        backgroundSize={"cover"}
       >
         <motion.div
           variants={aboutVariants}
@@ -80,14 +89,20 @@ export default function AboutSection() {
           viewport={{ once: true }}
         >
           <Flex direction={"column"} p="1rem">
-            <Text fontSize={"1.8rem"} color="#000000">
+            <Text
+              fontSize={{ xs: "1rem", md: "1.8rem" }}
+              color="#000000"
+              noOfLines={10}
+            >
               {
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
               }
             </Text>
             <Link>
               <Flex alignItems={"center"} pt="1rem">
-                <Text>Xem thêm</Text>
+                <Text fontWeight={"bold"} fontSize="1.3rem">
+                  Xem thêm
+                </Text>
                 <ChevronRightIcon />
               </Flex>
             </Link>

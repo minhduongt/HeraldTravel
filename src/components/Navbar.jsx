@@ -36,8 +36,8 @@ const NavLink = ({ children, url }) => (
     }}
     href={url}
     color="#ffffffc7"
-    fontSize={"1.5rem"}
-    textShadow={"1px 2px 2px #000000"}
+    fontSize={"1.8rem"}
+    textShadow={"1px 3px 2px #000000"}
     transition="all 0.5s"
   >
     {children}
@@ -93,7 +93,7 @@ export default function Navbar() {
         <Text color="#FFFFFF">Herald Travel - FPT University HCM</Text>
       </Flex>
       <Flex
-        borderY={isTop ? "solid 2px #ffbb00" : ""}
+        borderTop={isTop ? "solid 2px #ffbb00" : ""}
         px={4}
         h={"5rem"}
         w="100%"
@@ -159,7 +159,9 @@ export default function Navbar() {
         <Box pb={4} display={{ md: "none" }}>
           <Stack as={"nav"} spacing={4}>
             {Links.map((link) => (
-              <NavLink key={link}>{link}</NavLink>
+              <NavLink key={link} url={link.url}>
+                {link.title}
+              </NavLink>
             ))}
           </Stack>
         </Box>

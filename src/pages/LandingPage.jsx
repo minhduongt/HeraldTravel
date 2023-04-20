@@ -4,20 +4,20 @@ import { Link as RouterLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import LocationSelect from "@/components/landingpage/LocationSelect";
-import AboutSection from "@/components/landingpage/about";
+import AboutSection from "@/components/landingpage/About";
 // material
 
 // ----------------------------------------------------------------------
 
 export default function LandingPage() {
   return (
-    <Box minH={"250rem"}>
+    <Box minH={"150rem"}>
       <Box position={"relative"} top="-5rem">
         <FadeCarousel />
       </Box>
       <AboutSection />
       <LocationSelect />
-      <Flex height={"40vh"} backgroundColor="#ffd00090"></Flex>
+      <Flex height={"10vh"} backgroundColor="#ffd00090"></Flex>
     </Box>
   );
 }
