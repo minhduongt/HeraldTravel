@@ -421,10 +421,9 @@ export default function LocationSelect() {
               display={{ xs: "none", lg: "flex" }}
             >
               <Text>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur
+                Bên cạnh là bản đồ Thành phố Hồ Chí Minh nhằm giúp quý khách di
+                chuyển đến địa điểm theo cung đường ngắn và tiện lợi nhất.
               </Text>
-              <Text>Excepteur sint occaecat cupidatat non proident</Text>
             </Flex>
           </motion.div>
           <Flex width={"50%"} justifyContent={"center"} alignItems="center">
@@ -470,8 +469,13 @@ export default function LocationSelect() {
               fontSize={{ xs: "1rem", md: "1.5rem", xl: "2rem" }}
               display={{ xs: "none", lg: "flex" }}
             >
-              <Text>Lorem ipsum dolor sit amet</Text>
-              <Text>consectetur adipiscing elit</Text>
+              {/* <Text>
+                Hi vọng quý khách có một trải nghiệm thật tốt với Herald -
+                Travel
+              </Text>
+              <Text>
+                Chúng tôi kính chúc quý khách một chuyến du lịch thật đáng nhớ.
+              </Text> */}
             </Flex>
           </motion.div>
         </Flex>

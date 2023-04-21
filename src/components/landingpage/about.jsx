@@ -95,7 +95,17 @@ export default function AboutSection() {
               noOfLines={10}
             >
               {
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                "Thành phố Hồ Chí Minh là một địa điểm du lịch nổi tiếng với trang sử hào hùng cùng nhiều di tích, bảo tàng mang ý nghĩa vô cùng lớn. Với mong muốn khách du lịch sẽ hiểu rõ hơn về từng địa điểm tham quan tại Thành phố mang tên Bác, Herald được thành lập bới sinh viên của Đại học FPT để giúp quý khách nắm bắt rõ các chi tiết về địa điểm, hành trình và một phần ý nghĩa của điểm đến đó đối với Việt Nam."
+              }
+            </Text>
+            <Text
+              fontSize={{ xs: "1rem", md: "1.8rem" }}
+              color="#000000"
+              noOfLines={10}
+            >
+              {
+                "  Hi vọng quý khách có một trải nghiệm thật tốt với Herald - Travel Chúng tôi kính chúc quý khách một chuyến du lịch thật đáng nhớ."
+           
               }
             </Text>
             <Link>
