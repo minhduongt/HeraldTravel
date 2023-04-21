@@ -1,22 +1,14 @@
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
-  Link,
   IconButton,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  useColorModeValue,
+  Link,
   Stack,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
 
 const Links = [
@@ -38,6 +30,24 @@ const NavLink = ({ children, url }) => (
     color="#ffffffc7"
     fontSize={"1.8rem"}
     textShadow={"1px 3px 2px #000000"}
+    transition="all 0.5s"
+  >
+    {children}
+  </Link>
+);
+const NavLinkMobile = ({ children, url }) => (
+  <Link
+    px={2}
+    py={1}
+    rounded={"md"}
+    _hover={{
+      textDecoration: "none",
+      color: "#ffd000",
+    }}
+    href={url}
+    color="#ffffffc7"
+    fontSize={"1.3rem"}
+    textShadow={"1px 2px 1.5px #000000"}
     transition="all 0.5s"
   >
     {children}
@@ -156,12 +166,12 @@ export default function Navbar() {
         </Flex>
       </Flex>
       {isOpen ? (
-        <Box pb={4} display={{ md: "none" }}>
-          <Stack as={"nav"} spacing={4}>
+        <Box pb={90} display={{ md: "none" }}>
+          <Stack as={"nav"} spacing={1.5}>
             {Links.map((link) => (
-              <NavLink key={link} url={link.url}>
+              <NavLinkMobile key={link} url={link.url}>
                 {link.title}
-              </NavLink>
+              </NavLinkMobile>
             ))}
           </Stack>
         </Box>
