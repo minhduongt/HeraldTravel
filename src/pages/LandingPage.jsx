@@ -1,8 +1,5 @@
 import FadeCarousel from "@/components/FadeCarousel";
 import { Box, Container, Flex, Text } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useState } from "react";
 import LocationSelect from "@/components/landingpage/LocationSelect";
 import AboutSection from "@/components/landingpage/About";
 // material
