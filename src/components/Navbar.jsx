@@ -1,6 +1,7 @@
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
+  Button,
   Flex,
   HStack,
   IconButton,
@@ -16,7 +17,10 @@ const Links = [
   { title: "Liên hệ", url: "/contact" },
   { title: "Giới thiệu", url: "/about" },
 ];
-
+const Languagues = [
+  { value: "vi", text: "VI" },
+  { value: "en", text: "EN" },
+];
 const NavLink = ({ children, url }) => (
   <Link
     px={2}
@@ -80,6 +84,7 @@ function useScrollDirection() {
   return scrollDirection;
 }
 export default function Navbar() {
+  const [language, setLanguage] = useState();
   const [isTop, setTop] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const scrollDirection = useScrollDirection();
@@ -97,6 +102,11 @@ export default function Navbar() {
   // useEffect(() => {
   //   console.log("document.scrollTop", document.scrollTop);
   // }, [document.scrollTop]);
+  const handleChangeLanguage = (lang) => {
+    let loc = "http://localhost:3000/";
+    window.location.replace(loc + "?lng=" + lang);
+    setLanguage(lang);
+  };
   return (
     <>
       <Flex backgroundColor={"#000000"} justifyContent="center">
@@ -130,14 +140,41 @@ export default function Navbar() {
           justifyContent="center"
           w={"100%"}
         >
-          <Box justifySelf={"left"} color="#FFFFFF" width={"10%"}>
-            Herald Travel
+          <Box
+            justifySelf={"left"}
+            color="#FFFFFF"
+            width={"10%"}
+            fontSize="3rem"
+          >
+            Herald
           </Box>
           {Links.map((link) => (
             <Flex width={"30%"} justifyContent="center" key={link}>
               <NavLink url={link.url}>{link.title}</NavLink>
             </Flex>
           ))}
+          <Flex
+            alignItems={"center"}
+            color="#FFFFFF"
+            width={"10%"}
+            fontSize="1rem"
+          >
+            {Languagues.map((lang, index) => {
+              return (
+                <Box>
+                  <Button
+                    onClick={() => handleChangeLanguage(lang.value)}
+                    background="none"
+                    _hover={{ backgroundColor: "#ffd000" }}
+                    color={language === lang.value ? "#ffd000" : ""}
+                  >
+                    {lang.text}
+                  </Button>
+                  {index === Languagues.length - 1 ? "" : "|"}
+                </Box>
+              );
+            })}
+          </Flex>
         </HStack>
 
         <Flex alignItems={"center"}>

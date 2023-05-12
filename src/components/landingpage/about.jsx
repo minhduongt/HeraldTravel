@@ -93,22 +93,18 @@ export default function AboutSection() {
               fontSize={{ xs: "1rem", md: "1.8rem" }}
               color="#000000"
               noOfLines={10}
+              textShadow={"2px 3px 2px #ffffff"}
             >
               {
-                "Thành phố Hồ Chí Minh là một địa điểm du lịch nổi tiếng với trang sử hào hùng cùng nhiều di tích, bảo tàng mang ý nghĩa vô cùng lớn. Với mong muốn khách du lịch sẽ hiểu rõ hơn về từng địa điểm tham quan tại Thành phố mang tên Bác, Herald được thành lập bới sinh viên của Đại học FPT để giúp quý khách nắm bắt rõ các chi tiết về địa điểm, hành trình và một phần ý nghĩa của điểm đến đó đối với Việt Nam."
+                "Thành phố Hồ Chí Minh là một địa điểm du lịch nổi tiếng với trang sử hào hùng cùng nhiều di tích, bảo tàng mang ý nghĩa vô cùng lớn. Với mong muốn khách du lịch sẽ hiểu rõ hơn về từng địa điểm tham quan tại Thành phố mang tên Bác, Herald được thành lập bởi sinh viên của Đại học FPT để giúp quý khách nắm bắt rõ các chi tiết về địa điểm, hành trình và một phần ý nghĩa của điểm đến đó đối với Việt Nam."
               }
-            </Text>
-            <Text
-              fontSize={{ xs: "1rem", md: "1.8rem" }}
-              color="#000000"
-              noOfLines={10}
-            >
+              <br />
               {
                 "  Hi vọng quý khách có một trải nghiệm thật tốt với Herald - Travel Chúng tôi kính chúc quý khách một chuyến du lịch thật đáng nhớ."
-           
               }
             </Text>
-            <Link>
+
+            <Link href="/about">
               <Flex alignItems={"center"} pt="1rem">
                 <Text fontWeight={"bold"} fontSize="1.3rem">
                   Xem thêm

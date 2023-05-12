@@ -2,8 +2,10 @@ import { Box, Container, Flex, Image, Text } from "@chakra-ui/react";
 import Slider from "react-slick";
 import slickStyles from "./css/slick-dot.module.css";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const FadeCarousel = ({ children }, props) => {
+  const { t } = useTranslation();
   const settings = {
     dots: true,
     arrows: false,
@@ -106,7 +108,7 @@ const FadeCarousel = ({ children }, props) => {
                 color="#FFFFFF"
                 textShadow={"3px 3px 3px #7a6c3494"}
               >
-                Những địa điểm độc đáo chờ bạn khám phá
+                {t("first_title")}
               </Text>
             </Flex>
           </motion.div>
@@ -117,7 +119,7 @@ const FadeCarousel = ({ children }, props) => {
               <Box key={image.title}>
                 <Image
                   width={"100%"}
-                  height={{ xs: "50vh", md: "100vh" }}
+                  height={{ xs: "50vh", md: "100vh", lg: "110vh" }}
                   alt={image.title}
                   src={image.url}
                 />
