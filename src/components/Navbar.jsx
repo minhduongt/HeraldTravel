@@ -84,7 +84,7 @@ function useScrollDirection() {
   return scrollDirection;
 }
 export default function Navbar() {
-  const [language, setLanguage] = useState();
+  const currentLanguague = localStorage.getItem("lang");
   const [isTop, setTop] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const scrollDirection = useScrollDirection();
@@ -103,9 +103,9 @@ export default function Navbar() {
   //   console.log("document.scrollTop", document.scrollTop);
   // }, [document.scrollTop]);
   const handleChangeLanguage = (lang) => {
-    let loc = "http://localhost:3000/";
-    window.location.replace(loc + "?lng=" + lang);
-    setLanguage(lang);
+    let loc = window.location.origin;
+    window.location.replace(loc + "/?lng=" + lang);
+    localStorage.setItem("lang", lang);
   };
   return (
     <>
@@ -166,7 +166,7 @@ export default function Navbar() {
                     onClick={() => handleChangeLanguage(lang.value)}
                     background="none"
                     _hover={{ backgroundColor: "#ffd000" }}
-                    color={language === lang.value ? "#ffd000" : ""}
+                    color={currentLanguague === lang.value ? "#ffd000" : ""}
                   >
                     {lang.text}
                   </Button>
