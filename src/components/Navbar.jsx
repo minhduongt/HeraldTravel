@@ -10,12 +10,13 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { t } from "i18next";
 import { useEffect, useState } from "react";
 
 const Links = [
-  { title: "Trang chủ", url: "/" },
-  { title: "Liên hệ", url: "/contact" },
-  { title: "Giới thiệu", url: "/about" },
+  { title: "nav_home", url: "/" },
+  { title: "nav_contact", url: "/contact" },
+  { title: "nav_about", url: "/about" },
 ];
 const Languagues = [
   { value: "vi", text: "VI" },
@@ -149,8 +150,8 @@ export default function Navbar() {
             Herald
           </Box>
           {Links.map((link) => (
-            <Flex width={"30%"} justifyContent="center" key={link}>
-              <NavLink url={link.url}>{link.title}</NavLink>
+            <Flex width={"30%"} justifyContent="center" key={link.title}>
+              <NavLink url={link.url}>{t(link.title)}</NavLink>
             </Flex>
           ))}
           <Flex
@@ -161,7 +162,7 @@ export default function Navbar() {
           >
             {Languagues.map((lang, index) => {
               return (
-                <Box>
+                <Box key={lang.value}>
                   <Button
                     onClick={() => handleChangeLanguage(lang.value)}
                     background="none"
@@ -206,7 +207,7 @@ export default function Navbar() {
         <Box pb={90} display={{ md: "none" }}>
           <Stack as={"nav"} spacing={1.5}>
             {Links.map((link) => (
-              <NavLinkMobile key={link} url={link.url}>
+              <NavLinkMobile key={link.title} url={link.url}>
                 {link.title}
               </NavLinkMobile>
             ))}
