@@ -453,7 +453,7 @@ export default function LocationSelect() {
                         filter: `blur(0)`,
                       }}
                     >
-                      <Text
+                      {/* <Text
                         alignSelf="center"
                         fontSize={"2rem"}
                         textAlign="center"
@@ -467,7 +467,7 @@ export default function LocationSelect() {
                         }
                       >
                         {loc.title}
-                      </Text>
+                      </Text> */}
                       <Text
                         width={"100%"}
                         justifySelf={"flex-end"}
