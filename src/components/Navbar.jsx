@@ -10,8 +10,10 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import Hamburger from "hamburger-react";
 import { t } from "i18next";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 const Links = [
   { title: "nav_home", url: "/" },
@@ -85,6 +87,7 @@ function useScrollDirection() {
   return scrollDirection;
 }
 export default function Navbar() {
+  const navigate = useNavigate();
   const currentLanguague = localStorage.getItem("lang");
   const [isTop, setTop] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -110,8 +113,13 @@ export default function Navbar() {
   };
   return (
     <>
-      <Flex backgroundColor={"#000000"} justifyContent="center">
-        <Text color="#FFFFFF">Herald Travel - FPT University HCM</Text>
+      <Flex
+        backgroundColor={"#00000090"}
+        justifyContent="center"
+        position={"relative"}
+        zIndex={"101"}
+      >
+        <Text color="#FFFFFF">Herald Travel</Text>
       </Flex>
       <Flex
         borderTop={isTop ? "solid 2px #ffbb00" : ""}
@@ -121,19 +129,15 @@ export default function Navbar() {
         alignItems={"center"}
         justifyContent={"space-between"}
         position={"sticky"}
-        top={scrollDirection === "down" ? "0" : "-5rem"}
-        backgroundColor={isTop ? "transparent" : "#000000"}
+        top={{
+          xs: 0,
+          lg: isTop ? "0" : scrollDirection === "down" ? "-5rem" : "0",
+        }}
+        backgroundColor={isTop ? "transparent" : "#00000090"}
         transition="all 0.5s"
         zIndex={"99"}
+        display={{ xs: "none", md: "flex" }}
       >
-        <IconButton
-          size={"md"}
-          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-          aria-label={"Open Menu"}
-          display={{ md: "none" }}
-          onClick={isOpen ? onClose : onOpen}
-        />
-
         <HStack
           as={"nav"}
           spacing={4}
@@ -146,6 +150,7 @@ export default function Navbar() {
             color="#FFFFFF"
             width={"10%"}
             fontSize="3rem"
+            textShadow={"2px 2px #000"}
           >
             Herald
           </Box>
@@ -177,43 +182,70 @@ export default function Navbar() {
             })}
           </Flex>
         </HStack>
-
-        <Flex alignItems={"center"}>
-          {/* <Menu>
-            <MenuButton
-              as={Button}
-              rounded={"full"}
-              variant={"link"}
-              cursor={"pointer"}
-              minW={0}
-            >
-              <Avatar
-                size={"sm"}
-                src={
-                  "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-                }
-              />
-            </MenuButton>
-            <MenuList>
-              <MenuItem>Link 1</MenuItem>
-              <MenuItem>Link 2</MenuItem>
-              <MenuDivider />
-              <MenuItem>Link 3</MenuItem>
-            </MenuList>
-          </Menu> */}
-        </Flex>
       </Flex>
-      {isOpen ? (
-        <Box pb={90} display={{ md: "none" }}>
-          <Stack as={"nav"} spacing={1.5}>
-            {Links.map((link) => (
-              <NavLinkMobile key={link.title} url={link.url}>
-                {link.title}
-              </NavLinkMobile>
-            ))}
-          </Stack>
-        </Box>
-      ) : null}
+
+      <IconButton
+        w={"3rem"}
+        h="2.75rem"
+        size={"md"}
+        colorScheme="yellow"
+        icon={<Hamburger toggled={isOpen} toggle={isOpen ? onClose : onOpen} />}
+        aria-label={"Open Nav"}
+        left={
+          isOpen ? 5 : isTop ? "5" : scrollDirection === "down" ? "-5rem" : "5"
+        }
+        bottom={5}
+        transition="all 0.5s"
+        display={{ md: "none" }}
+        position={"fixed"}
+        zIndex={"101"}
+        sx={{
+          border: "none",
+          _hover: {
+            border: "none",
+          },
+        }}
+        // onClick={}
+      />
+
+      <Stack
+        width={"100vw"}
+        height={"100vh"}
+        display={{ md: "none" }}
+        px={"1rem"}
+        position={"fixed"}
+        transition={"0.25s ease-in-out"}
+        zIndex={"100"}
+        overflow={"hidden"}
+        top={{
+          xs: isTop ? "1.5rem" : 0,
+          lg: 0,
+        }}
+        sx={{ backgroundColor: "#00000090", left: isOpen ? "0rem" : "-50rem" }}
+      >
+        <Stack as={"nav"} spacing={4}>
+          {Links.map((link) => (
+            <Text
+              transition={"0.25s ease-in-out"}
+              fontSize={"2rem"}
+              // px={2}
+              py={1}
+              rounded={"md"}
+              color="#ffbb00da"
+              _hover={{
+                cursor: "pointer",
+                textDecoration: "none",
+                color: "#f7dc95da",
+                // transform: "scale(1.1)",
+              }}
+              onClick={() => navigate(link.url)}
+              key={link.id}
+            >
+              {t(link.title)}
+            </Text>
+          ))}
+        </Stack>
+      </Stack>
     </>
   );
 }

@@ -405,7 +405,7 @@ export default function LocationSelect() {
                             }
                           : {
                               transform: "scale(1.0)",
-                              zIndex: 99,
+                              zIndex: 98,
                             }
                       }
                       my={{ xs: "3rem", md: "5rem" }}
@@ -468,7 +468,7 @@ export default function LocationSelect() {
                       >
                         {loc.title}
                       </Text> */}
-                      <Text
+                      {/* <Text
                         width={"100%"}
                         justifySelf={"flex-end"}
                         alignSelf="center"
@@ -481,8 +481,8 @@ export default function LocationSelect() {
                           currentSelect.title === loc.title ? "block" : "none"
                         }
                       >
-                        {"Đã chọn"}
-                      </Text>
+                        {"Đang chọn"}
+                      </Text> */}
                     </Flex>
                   </Flex>
                 );
@@ -513,11 +513,11 @@ export default function LocationSelect() {
               h="18rem"
               templateRows="repeat(2, 1fr)"
               templateColumns="repeat(5, 1fr)"
-              gap={4}
+              gap={{ xs: 2, md: 4 }}
             >
               <GridItem
                 colSpan={2}
-                bg="#ceda27dc"
+                bg="#2798dadc"
                 alignItems="center"
                 display={"flex"}
                 justifyContent="center"
@@ -538,37 +538,36 @@ export default function LocationSelect() {
                 alignItems="center"
                 display={"flex"}
                 justifyContent="center"
+                backgroundColor={"#00000095"}
               >
                 <Text
-                  fontSize={{ xs: "1.5rem", md: "2rem", xl: "3.5rem" }}
+                  fontSize={{ xs: "1.4rem", md: "2rem", xl: "3.5rem" }}
                   color="#ffd000"
                   textShadow={"1px 3px 2px #000000"}
                 >
                   {currentSelect.title}
                 </Text>
               </GridItem>
-              {currentSelect.features
-                .slice(1, currentSelect.features.length)
-                .map((feat, index) => {
-                  return (
-                    <GridItem
-                      colSpan={2}
-                      bg={index % 2 === 0 ? "#e4661ddc" : "#ceda27dc"}
-                      key={feat}
-                      alignItems="center"
-                      display={"flex"}
-                      justifyContent="center"
+              {currentSelect.features.slice(1, 4).map((feat, index) => {
+                return (
+                  <GridItem
+                    colSpan={2}
+                    bg={index % 2 === 0 ? "#e4661ddc" : "#2798dadc"}
+                    key={feat}
+                    alignItems="center"
+                    display={"flex"}
+                    justifyContent="center"
+                  >
+                    <Text
+                      fontSize={{ xs: "1rem", md: "1.5rem", xl: "2rem" }}
+                      color={"#FFFFFF"}
+                      textShadow={"1px 3px 2px #000000"}
                     >
-                      <Text
-                        fontSize={{ xs: "1rem", md: "1.5rem", xl: "2rem" }}
-                        color={"#FFFFFF"}
-                        textShadow={"1px 3px 2px #000000"}
-                      >
-                        {feat}
-                      </Text>
-                    </GridItem>
-                  );
-                })}
+                      {feat}
+                    </Text>
+                  </GridItem>
+                );
+              })}
             </Grid>
           </motion.div>
 
@@ -618,11 +617,11 @@ export default function LocationSelect() {
               {" "}
               {currentSelect.title !== "" ? (
                 <Text>
-                  Bên cạnh là bản đồ vị trí nhằm giúp quý khách di chuyển đến{" "}
+                  Bên cạnh là bản đồ vị trí nhằm giúp bạn di chuyển đến
                   <Box color="#ffd000" display={"inline-block"} px="0.5rem">
                     {currentSelect.title}{" "}
                   </Box>
-                  dễ dáng hơn.
+                  dễ dàng hơn.
                 </Text>
               ) : (
                 <Text></Text>
@@ -632,15 +631,15 @@ export default function LocationSelect() {
 
           <Flex width={"50%"} justifyContent={"center"} alignItems="center">
             <Image
-              width={{ xs: "20rem", md: "40rem", xl: "50rem" }}
-              height={{ xs: "20rem", md: "40rem", xl: "50rem" }}
+              width={{ xs: "100%", md: "40rem", xl: "50rem" }}
+              height={{ xs: "27.5rem", md: "40rem", xl: "50rem" }}
               src="/images/saigonoldmap.jpg"
               sx={{ position: "absolute", zIndex: "1" }}
             />
             <Flex
-              width={{ xs: "15rem", md: "30rem", xl: "39rem" }}
-              minWidth={{ xs: "15rem", md: "30rem", xl: "39rem" }}
-              height={{ xs: "12rem", md: "25rem", xl: "32rem" }}
+              width={{ xs: "20rem", md: "30rem", xl: "39rem" }}
+              minWidth={{ xs: "20rem", md: "30rem", xl: "39rem" }}
+              height={{ xs: "18rem", md: "25rem", xl: "32rem" }}
               sx={{
                 position: "relative",
                 zIndex: "2",
@@ -673,13 +672,7 @@ export default function LocationSelect() {
               fontSize={{ xs: "1rem", md: "1.5rem", xl: "2rem" }}
               display={{ xs: "none", lg: "flex" }}
             >
-              {/* <Text>
-                Hi vọng quý khách có một trải nghiệm thật tốt với Herald -
-                Travel
-              </Text>
-              <Text>
-                Chúng tôi kính chúc quý khách một chuyến du lịch thật đáng nhớ.
-              </Text> */}
+              <Text>Hãy ghé thăm ngay để trải nghiệm tận mắt nhé!</Text>
             </Flex>
           </motion.div>
         </Flex>

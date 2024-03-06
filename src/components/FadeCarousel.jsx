@@ -131,7 +131,6 @@ const FadeCarousel = ({ children }, props) => {
                   border="solid 1px #c9a30d"
                 >
                   <motion.div
-                    key={image.title}
                     variants={animateVar}
                     initial="hidden"
                     animate="show"

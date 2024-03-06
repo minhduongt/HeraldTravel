@@ -1,11 +1,20 @@
 import { ArrowRightIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { Box, Container, Flex, Image, Link, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Flex,
+  Image,
+  Link,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { motion } from "framer-motion";
 // material
 
 // ----------------------------------------------------------------------
 
 export default function AboutSection() {
+  const [isDesktop] = useMediaQuery("(min-width: 1024px)");
   const titleVariants = {
     hide: {
       x: -300,
@@ -47,11 +56,13 @@ export default function AboutSection() {
         alignItems={"center"}
         direction={"column"}
         width="50%"
+        mx={{ xs: "0.5rem", md: "1rem", lg: "5rem" }}
       >
         <motion.div
           variants={titleVariants}
           initial="hide"
-          whileInView="appear"
+          // whileInView="appear"
+          animate="appear"
           viewport={{ once: true }}
         >
           <Flex
@@ -85,7 +96,8 @@ export default function AboutSection() {
         <motion.div
           variants={aboutVariants}
           initial="hide"
-          whileInView="appear"
+          whileInView={isDesktop ? "appear" : ""}
+          animate={!isDesktop ? "appear" : ""}
           viewport={{ once: true }}
         >
           <Flex direction={"column"} p="1rem">

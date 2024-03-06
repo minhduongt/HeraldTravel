@@ -2,7 +2,7 @@ import React from "react";
 import { Flex, Spinner, Text } from "@chakra-ui/react";
 
 function Loading() {
-  const defaultTitle = "Đang tải";
+  const defaultTitle = "Traveling...";
   return (
     <Flex
       fontFamily="main"

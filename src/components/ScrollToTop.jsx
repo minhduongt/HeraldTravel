@@ -44,7 +44,7 @@ const ScrollToTop = ({
           position="fixed"
           zIndex={2}
           border-radius={7}
-          backgroundColor="#000000"
+          backgroundColor="#00000090"
           sx={{
             transition: "opacity 1s ease-in-out",
             _focus: { bg: "secondary.300" },
